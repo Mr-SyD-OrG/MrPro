@@ -77,7 +77,7 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         await message.reply_text(
-             text="<b>OUR BOTS:\n\n• @MovSearch_X1_Bot\n• @MovSearch_X2_Bot\n• @Movies_Forage_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
+             text="<b>OUR BOTS:\n\n• @MovSearch_X_Bot\n• @MovSearch_X2_Bot\n• @Movies_Forage_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
         )
         return
@@ -89,7 +89,7 @@ async def start(client, message):
         
     if len(message.command) == 2 and message.command[1] in ["syd", "gon"]:
         await message.reply_text(
-             text="<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• @MovSearch_X1_bot</b>",   
+             text="<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• @MovSearch_X2_bot</b>",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("CONTINUE GETTING...", url=f"https://t.me/MovSearch_X1_bot")]])
         )
 
@@ -98,7 +98,7 @@ async def pm_text(bot, message):
     content = message.text
     if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
     await message.reply_text(
-         text="<b>OUR BOTS:\n\n• @MovSearch_X1_Bot\n• @MovSearch_X2_Bot\n• @Movies_Forage_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
+         text="<b>OUR BOTS:\n\n• @MovSearch_X_Bot\n• @MovSearch_X2_Bot\n• @Movies_Forage_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
     )
     return
