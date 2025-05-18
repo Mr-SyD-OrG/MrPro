@@ -42,6 +42,7 @@ class Database:
         self.users = self.db.uersz
         self.req = self.db.requests
         self.syd = self.db.bots
+        self.all = self.db.filed
         
     async def find_join_req(self, id):
         return bool(await self.req.find_one({'id': id}))
@@ -114,7 +115,20 @@ class Database:
 
     async def delete_user(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
+        
+    async def remove_stored_file_id(self, user_id: int):
+        await self.all.delete_one({"_id": user_id})
 
+    async def store_file_id_if_not_subscribed(self, user_id: int, file_id: str):
+        exists = await self.all.find_one({"_id": user_id})
+        if not exists:
+            await self.all.insert_one({"_id": user_id, "file_id": file_id})
+
+    async def get_stored_file_id(self, user_id: int) -> str | None:
+        data = await self.all.find_one({"_id": user_id})
+        if data:
+                return data.get("file_id")
+        return None
 
     async def get_banned(self):
         users = self.col.find({'ban_status.is_banned': True})
