@@ -66,7 +66,12 @@ async def start(client, message):
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
         )
         return
-        
+    data = message.command[1]
+    try:
+        pre, file_id = data.split('_', 1)
+    except:
+        file_id = data
+        pre = ""
     if AUTH_CHANNEL:
         try:
             # Fetch subscription statuses once
@@ -102,6 +107,7 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(btn),
                     parse_mode=enums.ParseMode.MARKDOWN
                 )
+                await db.store_file_id_if_not_subscribed(user_id, file_id)
                 return
         except Exception as e:
             logger.error(f"Error in subscription check: {e}")
@@ -128,7 +134,7 @@ async def start(client, message):
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
         )
         return
-    data = message.command[1]
+    
     if data.split("-", 1)[0] == "SyD":
         user_id = int(data.split("-", 1)[1])
         syd = await referal_add_user(user_id, message.from_user.id)
@@ -171,11 +177,7 @@ async def start(client, message):
              return 
     
 
-    try:
-        pre, file_id = data.split('_', 1)
-    except:
-        file_id = data
-        pre = ""
+    
     if data.split("-", 1)[0] == "BATCH":
         sts = await message.reply("<b>Pʟᴇᴀꜱᴇ ᴡᴀɪᴛ...</b>")
         file_id = data.split("-", 1)[1]
