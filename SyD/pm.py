@@ -99,8 +99,8 @@ async def start(client, message):
         buttons = [[
                     InlineKeyboardButton('☒ Δᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ ☒', url='http://telegram.me/MovSearch_X1_Bot?startgroup=true')
                 ],[
-                    InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛꫀ𝘴 ⚝', callback_data='channels')
-                ],[
+                    InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛꫀ𝘴 ⚝', callback_data='channels'),
+               # ],[
                     InlineKeyboardButton('⊛ Δʙᴏᴜᴛ ⊛', callback_data='about')
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
