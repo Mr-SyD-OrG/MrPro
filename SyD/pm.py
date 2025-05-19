@@ -2230,6 +2230,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )   
     
     elif query.data == "disclaimer":
+            await client.send_message(query.from_user.id, script.DISCLAIMER_TXT)
             btn = [[
                     InlineKeyboardButton("⇋ ʙᴀᴄᴋ ⇋", callback_data="about")
             ]]
