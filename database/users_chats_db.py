@@ -122,7 +122,7 @@ class Database:
     async def store_file_id_if_not_subscribed(self, user_id: int, file_id: str, mess: int):
         exists = await self.all.find_one({"_id": user_id})
         if not exists:
-            await self.all.insert_one({"_id": user_id, "file_id": file_id}, "mess": mess)
+            await self.all.insert_one({"_id": user_id, "file_id": file_id, "mess": mess})
 
     async def get_stored_file_id(self, user_id: int) -> str | None:
         data = await self.all.find_one({"_id": user_id})
