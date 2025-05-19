@@ -1061,8 +1061,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(alert, show_alert=True)
         
     if query.data.startswith("file"):
-        file_id = query.data.split("#")[1]
-        await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
+        filid = query.data.split("_")[1]
+        await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start=files_{filid}")
         return
         clicked = query.from_user.id
         try:
