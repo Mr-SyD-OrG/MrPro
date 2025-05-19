@@ -1061,6 +1061,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(alert, show_alert=True)
         
     if query.data.startswith("file"):
+        file_id = query.data.split("#")[1]
+        await query.answer(url=f"https://telegram.me/{temp.U_NAME}?start={ident}_{file_id}")
+        return
         clicked = query.from_user.id
         try:
             typed = query.from_user.id
@@ -2397,7 +2400,9 @@ async def auto_filter(client, msg, spoll=False):
             fe_name = file.file_id
             # Construct the button with filtered file name
             btn.append([
-                InlineKeyboardButton(f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}")
+                InlineKeyboardButton(f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f"files_{fe_name}")
+            
+              #  InlineKeyboardButton(f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}")
             ])
         btn.insert(0, 
             [
