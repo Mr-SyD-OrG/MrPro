@@ -101,13 +101,13 @@ async def start(client, message):
                     except (IndexError, ValueError):
                         btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ ↻", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
 
-                await client.send_message(
+               sydback = await client.send_message(
                     chat_id=message.from_user.id,
                     text="Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇꜱ Cʜᴀɴɴᴇʟ ᴀɴᴅ Tʜᴇɴ Cʟɪᴄᴋ Oɴ ᴛʀʏ ᴀɢᴀɪɴ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛᴇᴅ ꜰɪʟᴇ.",
                     reply_markup=InlineKeyboardMarkup(btn),
                     parse_mode=enums.ParseMode.MARKDOWN
                 )
-                await db.store_file_id_if_not_subscribed(message.from_user.id, file_id)
+                await db.store_file_id_if_not_subscribed(message.from_user.id, file_id, sydback.id)
                 return
         except Exception as e:
             logger.error(f"Error in subscription check: {e}")
