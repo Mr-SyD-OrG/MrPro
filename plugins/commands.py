@@ -107,7 +107,7 @@ async def start(client, message):
                     reply_markup=InlineKeyboardMarkup(btn),
                     parse_mode=enums.ParseMode.MARKDOWN
                 )
-                await db.store_file_id_if_not_subscribed(user_id, file_id)
+                await db.store_file_id_if_not_subscribed(message.from_user.id, file_id)
                 return
         except Exception as e:
             logger.error(f"Error in subscription check: {e}")
