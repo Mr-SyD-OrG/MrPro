@@ -1,4 +1,4 @@
-# Kanged From @TroJanZheX
+
 # Thanks @SyD_XyZ
 import asyncio, re, ast, math, random, pytz
 from datetime import datetime, timedelta, date, time
@@ -1585,16 +1585,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             buttons = [[
                     InlineKeyboardButton('☒ Δᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ ☒', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛᴇ𝘴 ⚝', callback_data='channels')
-                ],[
+                    InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛᴇ𝘴 ⚝', callback_data='channels'),
+              #  ],[
                     InlineKeyboardButton('⊛ Δʙᴏᴜᴛ ⊛', callback_data='about')
                   ]]
         else:
             buttons = [[
                     InlineKeyboardButton('☒ Δᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ ☒', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛꫀ𝘴 ⚝', callback_data='channels')
-                ],[
+                    InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛꫀ𝘴 ⚝', callback_data='channels'),
+              #  ],[
                     InlineKeyboardButton('⊛ Δʙᴏᴜᴛ ⊛', callback_data='about')
                   ]]
         
