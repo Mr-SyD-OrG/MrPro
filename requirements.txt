@@ -10,7 +10,7 @@
  shortzy 
  datetime 
  pytz 
- pyrofork
+# pyrofork
  aiohttp==3.8.3
  googletrans==3.1.0a0
 
