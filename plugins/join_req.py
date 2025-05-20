@@ -1,5 +1,5 @@
 from pyrogram import Client, filters, enums
-from pyrogram.types import ChatJoinRequest
+from pyrogram.types import ChatJoinRequest, InlineKeyboardButton, InlineKeyboardMarkup
 from database.users_chats_db import db
 from info import ADMINS, AUTH_CHANNEL
 
@@ -7,8 +7,6 @@ from info import ADMINS, AUTH_CHANNEL
 async def join_reqs(client, message: ChatJoinRequest):
   if not await db.find_join_req(message.from_user.id):
     await db.add_join_req(message.from_user.id)
-    await client.send_message(message.from_user.id, "<b> Tʜᴀɴᴋꜱ ɢᴏᴛ ᴏɴᴇ ᴩʟᴇᴀꜱᴇ <u>ᴄᴏɴᴛɪɴᴜᴇ... </u>⚡ </b>")
-        
     data = await db.get_stored_file_id(message.from_user.id)
     
     if not data:
@@ -18,18 +16,12 @@ async def join_reqs(client, message: ChatJoinRequest):
             pass
         return
     file_id = data["file_id"]
-    await client.send_message(message.from_user.id, f"<b> Tʜᴀɴᴋꜱ ɢᴏᴛ ᴏɴᴇ ᴩʟᴇᴀꜱᴇ <u>ᴄᴏɴᴛɪɴᴜᴇ... </u>⚡ {file_id}</b>")
     messyd = int(data["mess"])
-    await client.send_message(message.from_user.id, f"<b> Tʜᴀɴᴋꜱ ɢᴏᴛ ᴏɴᴇ ᴩʟᴇᴀꜱᴇ <u>ᴄᴏɴᴛɪɴᴜᴇ... </u>⚡ {messyd} </b>")
-        
+     
     try:
-        await client.send_message(message.from_user.id, "<b> Tʜᴀɴᴋꜱ ɢᴏᴛ ᴏɴᴇ ᴩʟᴇᴀꜱᴇ <u>ᴄᴏɴᴛɪɴᴜᴇ... </u>⚡ </b>")
-        
         syd = await client.get_messages(chat_id=message.from_user.id, message_ids=messyd)
     except:
         syd = None
-    await client.send_message(message.from_user.id, "<b> Tʜᴀɴᴋꜱ ɢᴏᴛ ᴏɴᴇ ᴩʟᴇᴀꜱᴇ <u>ᴄᴏɴᴛɪɴᴜᴇ... </u>⚡ </b>")
-        
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
