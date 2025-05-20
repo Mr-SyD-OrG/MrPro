@@ -8,14 +8,15 @@ async def join_reqs(client, message: ChatJoinRequest):
   if not await db.find_join_req(message.from_user.id):
     await db.add_join_req(message.from_user.id)
     data = await db.get_stored_file_id(message.from_user.id)
-    file_id = data["file_id"]
-    messyd = data["mess"]
-    if not file_id:
+    
+    if not data:
         try:
             await client.send_message(message.from_user.id, "<b> Tʜᴀɴᴋꜱ ɢᴏᴛ ᴏɴᴇ ᴩʟᴇᴀꜱᴇ <u>ᴄᴏɴᴛɪɴᴜᴇ... </u>⚡ </b>")
         except:
             pass
         return
+    file_id = data["file_id"]
+    messyd = data["mess"]
     try:
         syd = await client.get_messages(chat_id=message.from_user.id, message_ids=messyd)
     except:
