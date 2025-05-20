@@ -20,7 +20,7 @@ async def join_reqs(client, message: ChatJoinRequest):
     try:
         syd = await client.get_messages(chat_id=message.from_user.id, message_ids=messyd)
     except:
-        pass
+        syd = None
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
@@ -43,7 +43,7 @@ async def join_reqs(client, message: ChatJoinRequest):
     await asyncio.sleep(600)
     await msg.delete()
     await k.edit_text("<b>ʏᴏᴜʀ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ !!\n\nᴄʟɪᴄᴋ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ᴅᴇʟᴇᴛᴇᴅ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
-    await db.remove_stored_file_id(user_id)
+    await db.remove_stored_file_id(message.from_user.id)
     return
 
 @Client.on_message(filters.command("delreq") & filters.private & filters.user(ADMINS))
