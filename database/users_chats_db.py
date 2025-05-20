@@ -124,12 +124,9 @@ class Database:
         if not exists:
             await self.all.insert_one({"_id": user_id, "file_id": file_id, "mess": mess})
 
-    async def get_stored_file_id(self, user_id: int) -> str | None:
-        data = await self.all.find_one({"_id": user_id})
-        if data:
-                return data
-        return None
-
+    async def get_stored_file_id(self, user_id: int) -> dict | None:
+        return await self.all.find_one({"_id": user_id})
+        
     async def get_banned(self):
         users = self.col.find({'ban_status.is_banned': True})
         chats = self.grp.find({'chat_status.is_disabled': True})
