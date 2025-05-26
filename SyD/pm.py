@@ -113,13 +113,14 @@ async def start(client, message):
         await m.edit_text("Dᴏɴᴛ ꜰᴏʀɢᴇᴛ ᴛᴏ ꜱᴜᴩᴩᴏʀᴛ ᴜꜱ! @BOT_CRAckers 🍋")
         await asyncio.sleep(1.0)
         await m.delete()        
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, temp.B_NAME),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-        await message.reply_text("<b>Sᴇɴᴅ Nᴀᴍᴇ...!</b>")
+       # await message.reply_photo(
+           # photo=random.choice(PICS),
+          #  caption=script.START_TXT.format(message.from_user.mention, temp.B_NAME),
+          #  reply_markup=reply_markup,
+           # parse_mode=enums.ParseMode.HTML
+       # )
+      #  await message.reply_text("<b>Sᴇɴᴅ Nᴀᴍᴇ...!</b>")
+        await message.reply_text("<b>ʀᴇqᴜᴇꜱᴛ ɪɴ ɢʀᴏᴜᴩ ɴᴏᴡ...!</b>")
         return
     
 @Client.on_message(filters.group | filters.private & filters.text & filters.incoming)
@@ -138,7 +139,7 @@ async def give_filter(client, message):
                 if settings['auto_ffilter']:
                     await auto_filter(client, message) 
     else: #a better logic to avoid repeated lines of code in auto_filter function
-        search = message.text
+        search = message.teid
         temp_files, temp_offset, total_results = await get_search_results(chat_id=message.chat.id, query=search.lower(), offset=0, filter=True)
         if total_results == 0:
             return
@@ -148,6 +149,8 @@ async def give_filter(client, message):
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def pm_text(bot, message):
+    await message.reply_text("<b>ʀᴇqᴜᴇꜱᴛ ɪɴ ɢʀᴏᴜᴩ ɴᴏᴡ...!</b>")
+        return
     content = message.text
     user = message.from_user.first_name
     user_id = message.from_user.id
