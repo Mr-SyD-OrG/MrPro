@@ -119,8 +119,8 @@ async def start(client, message):
           #  reply_markup=reply_markup,
            # parse_mode=enums.ParseMode.HTML
        # )
-      #  await message.reply_text("<b>Sᴇɴᴅ Nᴀᴍᴇ...!</b>")
-        await message.reply_text("<b>ʀᴇqᴜᴇꜱᴛ ɪɴ ɢʀᴏᴜᴩ ɴᴏᴡ...!</b>")
+        await message.reply_text("<b>Sᴇɴᴅ Nᴀᴍᴇ...! Tᴏ Sᴇᴀʀᴄʜ.</b>")
+        #await message.reply_text("<b>...!</b>")
         return
     
 @Client.on_message(filters.group | filters.private & filters.text & filters.incoming)
