@@ -77,20 +77,20 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         await message.reply_text(
-             text="<b>OUR BOTS:\n\n• @MovSearch_X5_Bot\n• @MovSearch_X6_Bot ✅\n• @Movies_Forage_Bot ✅\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
-             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
+             text="<b>OUR BOTS:\n\n• @MovSearch_X5_Bot\n• @MovSearch_X7_Bot ✅\n• @MovFil_Bot ✅\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
+             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ᴏʀ ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
         )
         return
     if len(message.command) == 2 and message.command[1] in ["error", "goon"]:
         await message.reply_text(
-             text="<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• @Movies_file_x_bot</b>",   
-             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("CONTINUE GETTING...", url=f"https://t.me/movies_file_x_bot")]])
+             text="<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• @Mr_MovSearch_X1_Bot </b>",   
+             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("CONTINUE GETTING...", url=f"https://t.me/Mr_MovSearch_X1_Bot")]])
         )
         
     if len(message.command) == 2 and message.command[1] in ["syd", "gon"]:
         await message.reply_text(
-             text="<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• @MovSearch_X6_Bot</b>",   
-             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("CONTINUE GETTING...", url=f"https://t.me/MovSearch_X6_bot")]])
+             text="<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• @MovSearch_X7_Bot </b>",   
+             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("CONTINUE GETTING...", url=f"https://t.me/MovSearch_X7_Bot")]])
         )
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
@@ -98,8 +98,8 @@ async def pm_text(bot, message):
     content = message.text
     if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
     await message.reply_text(
-         text="<b>OUR BOTS:\n\n• @MovSearch_X6_Bot ❄️\n• @MovSearch_X5_Bot\n• @Movies_Forage_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
-         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
+         text="<b>OUR BOTS:\n\n• @MovSearch_X6_Bot ❄️\n• @MovSearch_X7_Bot \n• @MovFil_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
+         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("ꜱᴇɴᴅ ʜᴇʀᴇ 🫧", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
     )
     return
 
