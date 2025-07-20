@@ -82,8 +82,8 @@ async def give_filter(client, message):
         return
 
     await message.reply_text(
-          text="<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@MovSearch_X6_Bot</b>\n\n<i>ᴄʜᴀɴɢᴇ ʙᴏᴛ ⚡</i>",   
-          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/MovSearch_X6_Bot")]])
+          text="<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@MovSearch_x7_Bot</b>\n\n<i>ᴄʜᴀɴɢᴇ ʙᴏᴛ ⚡</i>",   
+          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/MovSearch_X7_Bot")]])
     )
     return
     if message.chat.id != SUPPORT_CHAT_ID:
@@ -114,7 +114,7 @@ async def pm_text(bot, message):
     if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
     
     await message.reply_text(
-          text="<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@MovSearch_X6_Bot</b>",   
+          text="<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@MovSearch_X7_Bot</b>",   
           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
     )
     return
