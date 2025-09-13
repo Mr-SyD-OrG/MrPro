@@ -255,7 +255,7 @@ async def get_search_results(client, chat_id, query, file_type=None, max_results
         )
         return [], "", 0
         
-async def get_search_results(chat_id, query, file_type=None, max_results=10, offset=0, filter=False):
+async def get_seach_results(chat_id, query, file_type=None, max_results=10, offset=0, filter=False):
     """For given query return (results, next_offset)"""
     if chat_id is not None:
         settings = await get_settings(int(chat_id))
