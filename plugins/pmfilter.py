@@ -82,8 +82,8 @@ async def give_filter(client, message):
         return
 
     await message.reply_text(
-          text="<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@MovSearch_x7_Bot</b>\n\n<i>ᴄʜᴀɴɢᴇ ʙᴏᴛ ⚡</i>",   
-          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/MovSearch_X7_Bot")]])
+          text=f"<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n{USERNAME}</b>\n\n<i>ᴄʜᴀɴɢᴇ ʙᴏᴛ ⚡</i>",   
+          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/{USERNAME}")]])
     )
     return
     if message.chat.id != SUPPORT_CHAT_ID:
