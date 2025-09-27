@@ -256,14 +256,15 @@ async def get_search_results(client, chat_id, query, file_type=None, max_results
             filter["file_type"] = file_type
 
         total_results = await Media.count_documents(filter)
-        next_offset = offset + max_results
-        if next_offset > total_results:
-            next_offset = ""
 
+    # fetch only what we need
         cursor = Media.find(filter)
         cursor.sort("$natural", -1)
         cursor.skip(offset).limit(max_results)
         files = await cursor.to_list(length=max_results)
+
+    # calculate next offset (allowing total_results to exceed max_results)
+        next_offset = offset + max_results if (offset + max_results) < total_results else ""
 
         return files, next_offset, total_results
 
