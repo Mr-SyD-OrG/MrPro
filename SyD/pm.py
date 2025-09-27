@@ -2335,7 +2335,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
     await query.answer(MSG_ALRT)
 
-    
+
+import re
+
+def clean_text(text: str) -> str:
+    text = re.sub(r'[^a-zA-Z0-9\s&]', '', text)
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
 async def auto_filter(client, msg, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2366,6 +2372,7 @@ async def auto_filter(client, msg, spoll=False):
             search = re.sub(r"\s+", " ", search).strip()
             search = search.replace("-", " ")
             search = search.replace(":","")
+            search = clean_text(search)
             files, offset, total_results = await get_search_results(client, message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
             if not files:
