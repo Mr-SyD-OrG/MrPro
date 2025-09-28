@@ -199,7 +199,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
                 ),
             ]
             for file in files
@@ -439,7 +439,7 @@ async def filter_qualities_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
                 ),
             ]
             for file in files
@@ -602,7 +602,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
                 ),
             ]
             for file in files
@@ -795,7 +795,7 @@ async def filter_seasons_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
                 ),
             ]
             for file in files
