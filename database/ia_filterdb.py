@@ -238,6 +238,7 @@ async def get_search_results(client, chat_id, query, file_type=None, max_results
 
         # Expand language keywords
         search_variants.append(re.sub("&", "and", query))
+        search_variants.append(re.sub("and", "&", query))
 
         # Expand language keywords
         expanded_variants = []
