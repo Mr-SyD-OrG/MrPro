@@ -199,7 +199,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
                 ),
             ]
             for file in files
@@ -430,7 +430,7 @@ async def filter_qualities_cb_handler(client: Client, query: CallbackQuery):
 
     files, offset, total_results = await get_search_results(client, chat_id, search, offset=0, filter=True)
     if not files:
-        await query.answer("🚫 ɴᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫 ʀᴇᴩᴏʀᴛ ᴛᴏ ᴛɢᴇ ᴀᴅᴍɪɴ.. 💥", show_alert=1)
+        await query.answer("🚫 Nᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫 \nRᴇᴩᴏʀᴛ ɪᴛ ᴛᴏ ᴛʜᴇ ᴏᴡɴᴇʀ ᴩʟᴇᴀꜱᴇ.", show_alert=1)
         return
     temp.GETALL[key] = files
     settings = await get_settings(message.chat.id)
@@ -439,7 +439,7 @@ async def filter_qualities_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
                 ),
             ]
             for file in files
@@ -593,7 +593,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
 
     files, offset, total_results = await get_search_results(client, chat_id, search, offset=0, filter=True)
     if not files:
-        await query.answer("🚫Sᴏʀʀʏ ɴᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫 ʀᴇᴩᴏʀᴛ ᴛᴏ ᴛʜᴇ ᴏᴡɴᴇʀ..ɪᴍᴍᴇᴅɪᴀᴛᴇʟʏ.. 💥", show_alert=1)
+        await query.answer("🚫 Nᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫 \nRᴇᴩᴏʀᴛ ɪᴛ ᴛᴏ ᴛʜᴇ ᴏᴡɴᴇʀ ᴩʟᴇᴀꜱᴇ ɪꜰ ʏᴏᴜ ᴀʀᴇ ꜱᴜʀᴇ ᴛʜᴀᴛ, ᴛʜᴇ ᴍᴏᴠɪᴇ/ꜱᴇʀɪᴇꜱ ɪꜱ ᴅᴜʙʙᴇᴅ", show_alert=1)
         return
     temp.GETALL[key] = files
     settings = await get_settings(message.chat.id)
@@ -602,7 +602,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
                 ),
             ]
             for file in files
@@ -786,7 +786,7 @@ async def filter_seasons_cb_handler(client: Client, query: CallbackQuery):
         files.extend(files2)
         
     if not files:
-        await query.answer("🚫 Nᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫 Rᴇᴩᴏʀᴛ ᴛᴏ ᴏᴡɴᴇʀ ᴩʟᴇᴀꜱᴇ.. ⚡", show_alert=1)
+        await query.answer("🚫 Nᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫 \nRᴇᴩᴏʀᴛ ɪᴛ ᴛᴏ ᴛʜᴇ ᴏᴡɴᴇʀ ᴩʟᴇᴀꜱᴇ ɪꜰ ʏᴏᴜ ᴀʀᴇ ꜱᴜʀᴇ ᴛʜᴀᴛ, ᴛʜᴇ ꜱᴇᴀꜱᴏɴ ɪꜱ ʀᴇʟᴇᴀꜱᴇᴅ", show_alert=1)
         return
     temp.GETALL[key] = files
     settings = await get_settings(message.chat.id)
@@ -795,7 +795,7 @@ async def filter_seasons_cb_handler(client: Client, query: CallbackQuery):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url="https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}"
                 ),
             ]
             for file in files
@@ -2342,6 +2342,39 @@ def clean_text(text: str) -> str:
     text = re.sub(r'[^a-zA-Z0-9\s&]', '', text)
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
+
+def format_button_name(file_name: str) -> str:
+    # Detect season, episode, or compact match
+    season_match = re.search(r"\b(?:season\s*(\d{1,2})|s0*(\d{1,2}))\b", file_name, re.IGNORECASE)
+    episode_match = re.search(r"\b(?:episode\s*(\d{1,3})|e[p]?0*(\d{1,3}))\b", file_name, re.IGNORECASE)
+    compact_match = re.search(r"\bS0*(\d{1,2})[\s._-]*E[P]?0*(\d{1,3})\b", file_name, re.IGNORECASE)
+
+    sn, ep = None, None
+
+    if compact_match:
+        sn = int(compact_match.group(1))
+        ep = int(compact_match.group(2))
+    else:
+        if season_match:
+            sn = int(season_match.group(1) or season_match.group(2))
+        if episode_match:
+            ep = int(episode_match.group(1) or episode_match.group(2))
+
+    # Clean existing season/episode markers from file name
+    cleaned_name = re.sub(r"(?i)(season\s*\d+|s\d+\s*e\d+|episode\s*\d+|e\d+)", "", file_name)
+    cleaned_name = re.sub(r"\s+", " ", cleaned_name).strip()
+    parts = [p for p in cleaned_name.split() if not (p.startswith("[") or p.startswith("@") or p.startswith("www."))]
+    
+    # Prepend SxxExx if available
+    if sn and ep:
+        return f"[S{sn:02d}E{ep:02d}] {' '.join(parts)}"
+    elif sn:
+        return f"[S{sn:02d}] {' '.join(parts)}"
+    elif ep:
+        return f"[E{ep:02d}] {' '.join(parts)}"
+    else:
+        return " ".join(parts)
+        
 async def auto_filter(client, msg, spoll=False):
     curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
     # reqstr1 = msg.from_user.id if msg.from_user else 0
@@ -2414,7 +2447,7 @@ async def auto_filter(client, msg, spoll=False):
             btn.append([
                # InlineKeyboardButton(f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", callback_data=f"files_{fe_name}")
             
-                InlineKeyboardButton(f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}")
+                InlineKeyboardButton(text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fe_name}")
             ])
         btn.insert(0, 
             [
