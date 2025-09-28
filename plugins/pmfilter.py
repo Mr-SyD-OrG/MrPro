@@ -2379,7 +2379,8 @@ async def auto_filter(client, msg, spoll=False):
 
             # Construct the button with filtered file name
             btn.append([
-                InlineKeyboardButton(f"📁 {get_size(file.file_size)} ▷ {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file.file_name.split()))}", url=f"https://telegram.me/{temp.U_NAME}?start=mrsyd_{fe_name}")
+                IInlineKeyboardButton(
+                    text=f"{get_size(file.file_size)} ▷ {format_button_name(file.file_name)}", callback_data=f'{pre}#{file.file_id}'
             ])
         btn.insert(0, 
             [
