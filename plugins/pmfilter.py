@@ -2410,8 +2410,7 @@ async def auto_filter(client, msg, spoll=False):
 
             # Construct the button with filtered file name
             btn.append([
-                IInlineKeyboardButton(
-                    text=f"{get_size(file.file_size)} ▷ {format_button_name(fe_name)}", callback_data=f'{pre}#{file.file_id}'
+                IInlineKeyboardButton(text=f"{get_size(file.file_size)} ▷ {format_button_name(fe_name)}", callback_data=f'{pre}#{fe_name}'
             ])
         btn.insert(0, 
             [
