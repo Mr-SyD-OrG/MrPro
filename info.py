@@ -18,7 +18,7 @@ API_HASH = environ.get('API_HASH', '')
 BOT_TOKEN = environ.get('BOT_TOKEN', "")
 BT_TOKEN = environ.get('BT_TOKEN', "")
 TOKEN = environ.get('TOKEN', "")
-USERNAME = "@MovSearch_X8_Bot"
+USERNAME = "@MovSearch_X9_Bot"
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
