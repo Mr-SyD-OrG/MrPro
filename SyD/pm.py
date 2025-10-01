@@ -105,12 +105,10 @@ async def start(client, message):
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_text("<i>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <b>ᴍᴏᴠꜱᴇᴀʀᴄʜ x¹ ʙᴏᴛ</b>.\nʜᴏᴘᴇ ʏᴏᴜ'ʀᴇ ᴅᴏɪɴɢ ᴡᴇʟʟ...</i>")
-        await asyncio.sleep(0.4)
-        await m.edit_text("⚡")
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(0.2)
         await m.edit_text("<b><i>ꜱᴛᴀʀᴛɪɴɢ...</i></b>")
         await asyncio.sleep(0.4)
-        await m.edit_text("Dᴏɴᴛ ꜰᴏʀɢᴇᴛ ᴛᴏ ꜱᴜᴩᴩᴏʀᴛ ᴜꜱ! @BOT_CRAckers 🍋")
+        await m.edit_text("Dᴏɴᴛ ꜰᴏʀɢᴇᴛ ᴛᴏ ꜱᴜᴩᴩᴏʀᴛ ᴜꜱ!\n@BOT_CRAckers 🍋")
         await asyncio.sleep(1.0)
         await m.delete()        
        # await message.reply_photo(
