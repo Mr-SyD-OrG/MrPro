@@ -232,6 +232,7 @@ async def get_search_results(client, chat_id, query, file_type=None, max_results
             search_variants.append(re.sub(episode_match.re, f"E{ep:02d}", query))
             search_variants.append(re.sub(episode_match.re, f"EP{ep}", query))
             search_variants.append(re.sub(episode_match.re, f"Episode {ep}", query))
+            search_variants.append(re.sub(episode_match.re, f"EP {ep:02d}", query))
             for syd in range(1, 9):  # for seasons 1 to 10
                 search_variants.append(re.sub(episode_match.re, f"S{syd:02d}E{ep:02d}", query))
                 search_variants.append(re.sub(episode_match.re, f"S{syd}E{ep}", query))
