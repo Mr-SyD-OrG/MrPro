@@ -89,7 +89,7 @@ async def start(client, message):
         return
     if len(message.command) != 2:
         await message.reply_text(
-             text=f"<b>OUR BOTS:\n\n• @MovSearch_X5_Bot\n• {USERNAME} ✅\n• @MovFil_Bot ✅\n\n<blockquote><i>One Of The Bot Maybe Down Use Others</i></blockquote></b>",   
+             text=f"<b>OUR BOTS:\n\n• @MovSearch_X5_Bot\n• @{USERNAME} ✅\n• @MovFil_Bot ✅\n\n<blockquote><i>One Of The Bot Maybe Down Use Others</i></blockquote></b>",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ᴏʀ ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
         )
         return
@@ -107,6 +107,15 @@ async def start(client, message):
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def pm_text(bot, message):
+    if not await is_subscribed(bot, message):
+        btn = [[InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ⊛", url=f"https://t.me/{FSUB_UNAME}")]]
+        await bot.send_message(
+            message.from_user.id,
+            "Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇꜱ Cʜᴀɴɴᴇʟ ᴀɴᴅ Tʜᴇɴ Cʟɪᴄᴋ Oɴ /start \n<blockquote>Tʜɪꜱ ɪꜱ ᴀ ꜰʀᴇᴇ ꜱᴇʀᴠɪᴄᴇ ꜱᴏ, ᴩʟᴇᴀꜱᴇ ᴊᴏɪɴ ᴏɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 🙃</blockquote>",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.HTML
+        )
+        return
     content = message.text
     if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
     await message.reply_text(
