@@ -1,6 +1,7 @@
 import re
 from os import environ,getenv
 from Script import script 
+from pyrogram import utils as pyroutils
 
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
@@ -20,6 +21,9 @@ BT_TOKEN = environ.get('BT_TOKEN', "")
 TOKEN = environ.get('TOKEN', "")
 USERNAME = "MovSearch_X9_Bot"
 FSUB_UNAME = "Mod_Moviez_X"
+
+pyroutils.MIN_CHAT_ID = -999999999999
+pyroutils.MIN_CHANNEL_ID = -100999999999999
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
