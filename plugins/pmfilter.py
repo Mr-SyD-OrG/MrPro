@@ -82,7 +82,7 @@ async def give_filter(client, message):
         return
 
     await message.reply_text(
-          text=f"<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n{USERNAME}</b>\n\n<i>ᴄʜᴀɴɢᴇ ʙᴏᴛ ⚡</i>",   
+          text=f"<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@{USERNAME}</b>\n\n<i>ᴄʜᴀɴɢᴇ ʙᴏᴛ ⚡</i>",   
           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/{USERNAME}")]])
     )
     return
@@ -114,7 +114,7 @@ async def pm_text(bot, message):
     if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
     
     await message.reply_text(
-          text=f"<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n{USERNAME}</b>",   
+          text=f"<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@{USERNAME}</b>",   
           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
     )
     return
