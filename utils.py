@@ -71,9 +71,9 @@ def decode_file_name(encoded: str) -> str:
 async def is_subscribed(bot, query=None, userid=None):
     try:
         if userid == None and query != None:
-            user = await bot.get_chat_member(SYD_CHANNEL, query.from_user.id)
+            user = await bot.get_chat_member(FSUB_UNAME, query.from_user.id)
         else:
-            user = await bot.get_chat_member(SYD_CHANNEL, int(userid))
+            user = await bot.get_chat_member(FSUB_UNAME, int(userid))
     except UserNotParticipant:
         pass
     except Exception as e:
