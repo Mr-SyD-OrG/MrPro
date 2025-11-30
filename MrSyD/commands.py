@@ -110,7 +110,7 @@ async def pm_text(bot, message):
     content = message.text
     if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
     await message.reply_text(
-         text=f"<b>OUR BOTS:\n\n• @MovSearch_X6_Bot ❄️\n• {USERNAME} \n• @MovFil_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
+         text=f"<b>OUR BOTS:\n\n• @MovSearch_X6_Bot ❄️\n• @{USERNAME} \n• @MovFil_Bot\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
          reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("ꜱᴇɴᴅ ʜᴇʀᴇ 🫧", url=f"https://t.me/+5n7vViwKXJJiMjhl")]])
     )
     return
