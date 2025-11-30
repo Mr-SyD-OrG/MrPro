@@ -1,7 +1,7 @@
 from pyrogram import Client, filters, enums
 from pyrogram.types import ChatJoinRequest, InlineKeyboardButton, InlineKeyboardMarkup
 from database.users_chats_db import db
-from info import ADMINS, AUTH_CHANNEL
+from info import ADMINS, AUTH_CHANNEL, SYD_CHANNEL
 
 @Client.on_chat_join_request(filters.chat(AUTH_CHANNEL))
 async def join_reqs(client, message: ChatJoinRequest):
