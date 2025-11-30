@@ -62,7 +62,7 @@ async def start(client, message):
         await asyncio.sleep(0.4)
         await m.delete()
         await message.reply_text(
-             text=f"<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n{USERNAME}</b>",   
+             text=f"<b>Sᴇɴᴅ Mᴏᴠɪᴇ Nᴀᴍᴇ Hᴇʀᴇ..!😊 \n@{USERNAME}</b>",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🥶 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ 🥶", url=f"https://t.me/+Uqdj6CEYypVlNDA9")]])
         )
         return
