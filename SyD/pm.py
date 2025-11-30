@@ -96,7 +96,7 @@ async def start(client, message):
         )
         return
     if not await is_subscribed(client, message):
-        btn = [[InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ³⊛", url=f"https://t.me/{FSUB_UNAME}")]]
+        btn = [[InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ⊛", url=f"https://t.me/{FSUB_UNAME}")]]
         await client.send_message(
             message.from_user.id,
             "Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇꜱ Cʜᴀɴɴᴇʟ ᴀɴᴅ Tʜᴇɴ Cʟɪᴄᴋ Oɴ /start \n<blockquote>Tʜɪꜱ ɪꜱ ᴀ ꜰʀᴇᴇ ꜱᴇʀᴠɪᴄᴇ ꜱᴏ, ᴩʟᴇᴀꜱᴇ ᴊᴏɪɴ ᴏɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 🙃</blockquote>",
