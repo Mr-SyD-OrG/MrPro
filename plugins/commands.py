@@ -93,10 +93,10 @@ async def start(client, message):
                 btn = []
 
                 # Only invite_linkadd buttons if the user is not subscribed
-                if not invite_link:
+                if invite_link:
                     btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ¹⊛", url=invite_link.invite_link)])
 
-                if not invite_link2:
+                if invite_link2:
                     btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ²⊛", url=invite_link2.invite_link)])
 
                 if not is_sub:
