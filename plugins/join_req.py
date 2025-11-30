@@ -49,7 +49,7 @@ async def join_reqs(client, message: ChatJoinRequest):
 
 
 @Client.on_chat_join_request(filters.chat(SYD_CHANNEL))
-async def join_reqs(client, message: ChatJoinRequest):
+async def join_reqqs(client, message: ChatJoinRequest):
   if not await db.find_join_req(message.from_user.id, SYD_CHANNEL):
     await db.add_join_req(message.from_user.id, SYD_CHANNEL)
     data = await db.get_stored_file_id(message.from_user.id)
