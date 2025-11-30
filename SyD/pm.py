@@ -14,7 +14,7 @@ from info import *
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
-from utils import get_size, is_req_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, get_tutorial, send_all, get_cap, encode_file_name
+from utils import get_size, is_req_subscribed, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, get_tutorial, send_all, get_cap, encode_file_name
 from database.users_chats_db import db
 from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files, get_file_details_by_name_and_size
 from database.filters_mdb import (
@@ -95,6 +95,15 @@ async def start(client, message):
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Gᴇᴛ Fɪʟᴇ", url="https://t.me/MovSearch_X_Bot?start=gon")]])
         )
         return
+    if not await is_subscribed(client, message):
+        btn = [[InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ³⊛", url=f"https://t.me/{FSUB_UNAME}")]]
+        await client.send_message(
+            message.from_user.id,
+            "Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇꜱ Cʜᴀɴɴᴇʟ ᴀɴᴅ Tʜᴇɴ Cʟɪᴄᴋ Oɴ /start \n<blockquote>Tʜɪꜱ ɪꜱ ᴀ ꜰʀᴇᴇ ꜱᴇʀᴠɪᴄᴇ ꜱᴏ, ᴩʟᴇᴀꜱᴇ ᴊᴏɪɴ ᴏɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 🙃</blockquote>",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.MARKDOWN
+        )
+        return
     if len(message.command) != 2:
         buttons = [[
                     InlineKeyboardButton('☒ Δᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ ☒', url='http://telegram.me/MovSearch_X1_Bot?startgroup=true')
@@ -104,7 +113,7 @@ async def start(client, message):
                     InlineKeyboardButton('⊛ Δʙᴏᴜᴛ ⊛', callback_data='about')
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        m=await message.reply_text("<i>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <b>ᴍᴏᴠꜱᴇᴀʀᴄʜ x¹ ʙᴏᴛ</b>.\nʜᴏᴘᴇ ʏᴏᴜ'ʀᴇ ᴅᴏɪɴɢ ᴡᴇʟʟ...</i>")
+        m=await message.reply_text("<i>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <b>ᴍᴏᴠꜱᴇᴀʀᴄʜ x⁹ ʙᴏᴛ</b>.\nʜᴏᴘᴇ ʏᴏᴜ'ʀᴇ ᴅᴏɪɴɢ ᴡᴇʟʟ...</i>")
         await asyncio.sleep(0.2)
         await m.edit_text("<b><i>ꜱᴛᴀʀᴛɪɴɢ...</i></b>")
         await asyncio.sleep(0.4)
