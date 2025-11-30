@@ -5,7 +5,7 @@ from database.users_chats_db import db
 from pyrogram import Client, filters
 import datetime
 import time
-from utils import broadcast_messages, broadcast_messages_group
+from utils import broadcast_messages, is_subscribed, broadcast_messages_group
 import asyncio
 
 
@@ -74,7 +74,19 @@ async def broadcast_group(bot, message):
 async def start(client, message):
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id, message.from_user.first_name)
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+        try:
+            await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
+        except:
+            pass
+    if not await is_subscribed(client, message):
+        btn = [[InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ⊛", url=f"https://t.me/{FSUB_UNAME}")]]
+        await client.send_message(
+            message.from_user.id,
+            "Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇꜱ Cʜᴀɴɴᴇʟ ᴀɴᴅ Tʜᴇɴ Cʟɪᴄᴋ Oɴ /start \n<blockquote>Tʜɪꜱ ɪꜱ ᴀ ꜰʀᴇᴇ ꜱᴇʀᴠɪᴄᴇ ꜱᴏ, ᴩʟᴇᴀꜱᴇ ᴊᴏɪɴ ᴏɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ 🙃</blockquote>",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.MARKDOWN
+        )
+        return
     if len(message.command) != 2:
         await message.reply_text(
              text=f"<b>OUR BOTS:\n\n• @MovSearch_X5_Bot\n• {USERNAME} ✅\n• @MovFil_Bot ✅\n\n<i>One Of The Bot Maybe Down Use Others</i></b>",   
@@ -89,8 +101,8 @@ async def start(client, message):
         
     if len(message.command) == 2 and message.command[1] in ["syd", "gon"]:
         await message.reply_text(
-             text=f"<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• {USERNAME} </b>",   
-             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("CONTINUE GETTING...", url=f"https://t.me/MovSearch_X7_Bot")]])
+             text=f"<b>Tʜᴀɴᴋꜱ ᴜꜱᴇ ᴛʜᴀᴛ ʙᴏᴛ ɴᴏᴡ..! \n• @{USERNAME} </b>",   
+             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("CONTINUE GETTING...", url=f"https://t.me/{USERNAME}")]])
         )
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
