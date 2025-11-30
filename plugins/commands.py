@@ -84,7 +84,7 @@ async def start(client, message):
                     invite_link, invite_link2 = None, None
                     if not is_req_sub:
                         invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL), creates_join_request=True)
-                    if not is_req_sub2 
+                    if not is_req_sub2:
                         invite_link2 = await client.create_chat_invite_link(int(SYD_CHANNEL), creates_join_request=True)
                 except ChatAdminRequired:
                     logger.error("Make sure Bot is admin in Forcesub channel")
