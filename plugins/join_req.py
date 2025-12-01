@@ -55,6 +55,7 @@ async def join_reqqs(client, message: ChatJoinRequest):
     data = await db.get_stored_file_id(message.from_user.id)
     
     if not data:
+        return 
         try:
             await client.send_message(message.from_user.id, "<b>ᴛʜᴀɴᴋꜱ ғᴏʀ ᴊᴏɪɴɪɴɢ ! ʏᴏᴜ ᴄᴀɴ ɴᴏᴡ <u>ᴄᴏɴᴛɪɴᴜᴇ</u> ɴᴏᴡ ⚡</b>")
         except:
