@@ -5,6 +5,7 @@ import datetime
 import pytz
 from info import DATABASE_URI as MONGO_URI
 from pymongo import MongoClient
+import time
 
 my_client = MongoClient(MONGO_URI)
 mydb = my_client["referal_user"]
@@ -49,13 +50,42 @@ class Database:
         doc = await self.req.find_one({'user_id': user_id, 'channel_id': channel_id})
         return bool(doc)
 
-    async def add_join_req(self, user_id: int, channel_id: int):
+    async def update_count(self, user_id: int, new_count: int):
+        await self.req.update_one(
+            {"_id": user_id},
+            {"$set": {"count": new_count}}
+        )
+    
+    async def syd_user(self, user_id: int):
+        return await self.req.find_one({"_id": user_id})
+    
+
+    async def add_join_oreq(self, user_id: int, channel_id: int):
         await self.req.update_one(
             {'user_id': user_id, 'channel_id': channel_id},
             {'$set': {'user_id': user_id, 'channel_id': channel_id}},
             upsert=True
         )
 
+    async def add_join_req(self, user_id: int, channel_id: int):
+        result = await self.req.update_one(
+            {"_id": user_id},
+            {
+                "$addToSet": {"channels": channel_id},
+                "$setOnInsert": {"time": int(time.time())},   # only on first user document creation
+            },
+            upsert=True
+        )
+
+        if result.modified_count == 1:
+            await self.req.update_one(
+                {"_id": user_id},
+                {"$set": {
+                    "time": int(time.time()),   # reset time
+                    "count": 0                  # reset count
+                }}
+            )
+            
     async def del_join_req(self, user_id: int, channel_id: int):
         await self.req.delete_one({'user_id': user_id, 'channel_id': channel_id})
 
