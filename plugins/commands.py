@@ -12,7 +12,7 @@ from urllib.parse import quote_plus
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db, delete_all_referal_users, get_referal_users_count, get_referal_all_users, referal_add_user
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, SYD_CHANNEL, FSUB_UNAME, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, SUPPORT_CHAT, MAX_B_TN, VERIFY, HOWTOVERIFY, SHORTLINK_API, SHORTLINK_URL, TUTORIAL, IS_TUTORIAL, PREMIUM_USER, PICS, SUBSCRIPTION, REFERAL_PREMEIUM_TIME, REFERAL_COUNT, USERNAME, PREMIUM_AND_REFERAL_MODE
-from utils import get_settings, get_size, is_req_subscribed, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token, get_shortlink, get_tutorial
+from utils import get_settings, get_size, is_req_subscribed, get_authchannel, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token, get_shortlink, get_tutorial
 from database.connections_mdb import active_connection
 # from plugins.pm_filter import ENABLE_SHORTLINK
 import re, asyncio, os, sys
@@ -75,17 +75,18 @@ async def start(client, message):
     if AUTH_CHANNEL:
         try:
             # Fetch subscription statuses once
-            is_req_sub = await is_req_subscribed(client, message, AUTH_CHANNEL)
-            is_req_sub2 = await is_req_subscribed(client, message, SYD_CHANNEL)
+            fsub, ch1, ch2 = await get_authchannel(client, message, AUTH_CHANNEL)
+            #is_req_sub = await is_req_subscribed(client, message, AUTH_CHANNEL)
+            #is_req_sub2 = await is_req_subscribed(client, message, SYD_CHANNEL)
             is_sub = await is_subscribed(client, message)
 
-            if not (is_req_sub and is_req_sub2):
+            if not (fsub and is_sub):
                 try:
                     invite_link, invite_link2 = None, None
-                    if not is_req_sub:
-                        invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL), creates_join_request=True)
-                    if not is_req_sub2:
-                        invite_link2 = await client.create_chat_invite_link(int(SYD_CHANNEL), creates_join_request=True)
+                    if ch1:
+                        invite_link = await client.create_chat_invite_link(int(ch1), creates_join_request=True)
+                    if ch2:
+                        invite_link2 = await client.create_chat_invite_link(int(ch2), creates_join_request=True)
                 except ChatAdminRequired:
                     logger.error("Make sure Bot is admin in Forcesub channel")
                     return
@@ -93,12 +94,13 @@ async def start(client, message):
                 btn = []
 
                 # Only invite_linkadd buttons if the user is not subscribed
-                if invite_link2:
-                    btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ¹⊛", url=invite_link2.invite_link)])
-
+                
                 if invite_link:
-                    btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ²⊛", url=invite_link.invite_link)])
+                    btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ¹⊛", url=invite_link.invite_link)])
 
+                if invite_link2:
+                    btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ²⊛", url=invite_link2.invite_link)])
+                
                 if not is_sub:
                     btn.append([InlineKeyboardButton("⊛ Jᴏɪɴ Uᴘᴅᴀᴛᴇꜱ CʜᴀɴɴᴇL ³⊛", url=f"https://t.me/{FSUB_UNAME}")])
                     
@@ -114,7 +116,7 @@ async def start(client, message):
                     chat_id=message.from_user.id,
                     text="<b>Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇꜱ Cʜᴀɴɴᴇʟ</b> ᴀɴᴅ Tʜᴇɴ Cʟɪᴄᴋ Oɴ Tʀʏ Aɢᴀɪɴ Tᴏ Gᴇᴛ Yᴏᴜʀ Rᴇǫᴜᴇꜱᴛᴇᴅ Fɪʟᴇ.",
                     reply_markup=InlineKeyboardMarkup(btn),
-                    parse_mode=enums.ParseMode.MARKDOWN
+                    parse_mode=enums.ParseMode.HTML
                 )
                 await db.store_file_id_if_not_subscribed(message.from_user.id, file_id, sydback.id)
                 return
