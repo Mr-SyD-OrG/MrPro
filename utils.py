@@ -156,8 +156,14 @@ async def get_authchannel(bot, query, auth_list):
     return no_db_response()
     
 
+import re
+
 async def extract_audio_subtitles_formatted(text: str) -> str:
+
+    # Normalize text
     t = text.replace("\n", " ").strip()
+
+    # Extract AUDIO
     audio = None
     m_audio = re.search(r"audio[:\- ]+(.*?)(?=subtitles|$)", t, re.IGNORECASE)
     if m_audio:
@@ -173,7 +179,8 @@ async def extract_audio_subtitles_formatted(text: str) -> str:
         parts.append(f"📜 **Subtitles:** {subs}")
 
     return "\n".join(parts)
-    
+
+
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
