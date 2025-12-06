@@ -180,7 +180,7 @@ async def extract_audio_subtitles_formatted(text: str) -> str:
     # Build output
     parts = []
     if audio:
-        parts.append(f"🔊 **Audio:** {audio}")
+        parts.append(f"\n🔊 **Audio:** {audio}")
     if subs:
         parts.append(f"📜 **Subtitles:** {subs}")
 
