@@ -168,9 +168,9 @@ async def extract_audio_subtitles_formatted(text: str) -> str:
         subs = m_subs.group(1).strip().rstrip(",.; ")
     parts = []
     if audio:
-        parts.append(f"\n🔊 Audio: <a href="https://t.me/Mod_Moviez_X">{audio}</a>")
+        parts.append(f"\n🔊 Audio: <a href='https://t.me/Mod_Moviez_X'>{audio}</a>")
     if subs:
-        parts.append(f"📜 Subtitles: <a href="https://t.me/Bot_Cracker">{subs}</a>")
+        parts.append(f"📜 Subtitles: <a href='https://t.me/Bot_Cracker'>{subs}</a>")
 
     return "\n".join(parts)
 
