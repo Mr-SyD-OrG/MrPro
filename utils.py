@@ -156,6 +156,24 @@ async def get_authchannel(bot, query, auth_list):
     return no_db_response()
     
 
+async def extract_audio_subtitles_formatted(text: str) -> str:
+    t = text.replace("\n", " ").strip()
+    audio = None
+    m_audio = re.search(r"audio[:\- ]+(.*?)(?=subtitles|$)", t, re.IGNORECASE)
+    if m_audio:
+        audio = m_audio.group(1).strip().rstrip(",.; ")
+    subs = None
+    m_subs = re.search(r"subtitles[:\- ]+(.*?)(?=$)", t, re.IGNORECASE)
+    if m_subs:
+        subs = m_subs.group(1).strip().rstrip(",.; ")
+    parts = []
+    if audio:
+        parts.append(f"🔊 **Audio:** {audio}")
+    if subs:
+        parts.append(f"📜 **Subtitles:** {subs}")
+
+    return "\n".join(parts)
+    
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
