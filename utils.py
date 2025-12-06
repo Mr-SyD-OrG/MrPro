@@ -155,29 +155,17 @@ async def get_authchannel(bot, query, auth_list):
         return True, None, None
     return no_db_response()
     
-import re
-
 async def extract_audio_subtitles_formatted(text: str) -> str:
-
-    # Remove only leading emojis before keywords
     cleaned = re.sub(r"[🔊📜]\s*(?=(Audio|Subtitles))", "", text, flags=re.IGNORECASE)
-
-    # Normalize
     t = cleaned.replace("\n", " ").strip()
-
-    # Extract AUDIO
     audio = None
     m_audio = re.search(r"audio[:\- ]+(.*?)(?=subtitles|$)", t, re.IGNORECASE)
     if m_audio:
         audio = m_audio.group(1).strip().rstrip(",.; ")
-
-    # Extract SUBTITLES
     subs = None
     m_subs = re.search(r"subtitles[:\- ]+(.*?)(?=$)", t, re.IGNORECASE)
     if m_subs:
         subs = m_subs.group(1).strip().rstrip(",.; ")
-
-    # Build output
     parts = []
     if audio:
         parts.append(f"\n🔊 **Audio:** {audio}")
