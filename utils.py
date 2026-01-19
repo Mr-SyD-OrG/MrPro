@@ -101,9 +101,13 @@ async def is_req_subscribed(bot, query, syd=AUTH_CHANNEL):
 
     return False
 
-async def get_authchannel(bot, query, auth_list):
+
+    
+async def get_authchannel(bot, query):
+    auth_list = await bd.get_fsub_list()
+    if not auth_list: return True, None, None
     user_id = query.from_user.id
-    doc = await db.syd_user(user_id)  # expects {"_id": id, "channels": [...], "count": n, "time": ts} or None
+    doc = await bd.syd_user(user_id)  # expects {"_id": id, "channels": [...], "count": n, "time": ts} or None
     now = int(time.time())
 
     # Helper: return False + first/second auth channel when no DB channels exist
@@ -111,6 +115,7 @@ async def get_authchannel(bot, query, auth_list):
         ch1 = auth_list[0] if len(auth_list) >= 1 else None
         ch2 = auth_list[1] if len(auth_list) >= 2 else None
         return False, ch1, ch2
+
 
     # Helper: safe member check
     async def _is_member(bot, ch_id, user_id):
@@ -126,7 +131,10 @@ async def get_authchannel(bot, query, auth_list):
 
     # If no DB doc -> prompt first one or two auth channels
     if not doc:
-        return no_db_response()
+        for ch in auth_list:
+            if not await _is_member(bot, ch, user_id):
+                return no_db_response()
+        return True, None, None
 
     channels = doc.get("channels", []) or []
     count = doc.get("count", 0)
@@ -144,9 +152,10 @@ async def get_authchannel(bot, query, auth_list):
         return False, ch1, None
         
     if count < COUNT_LIMIT and (not t or (now - t) < DAYS_LIMIT * 86400):
-        await db.update_count(user_id, count + 1)
+        await bd.update_count(user_id, count + 1)
         print("with boundary")
         return True, None, None
+
     if len(channels) >= 2:
         for ch in missing:
             if not await _is_member(bot, ch, user_id):
