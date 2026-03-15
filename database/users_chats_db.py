@@ -44,9 +44,14 @@ class Database:
         self.req = self.db.requests
         self.syd = self.db.bots
         self.all = self.db.filed
+        self.fsub_col = self.db.fsub_col
 
     
-    async def find_join_req(self, user_id: int, channel_id: int):
+    
+    async def delete_channel_users(self, channel_id: int):
+        result = await self.req.delete_many({"channel_id": channel_id})
+        return result.deleted_count
+  async def find_join_req(self, user_id: int, channel_id: int):
         doc = await self.req.find_one({'user_id': user_id, 'channel_id': channel_id})
         return bool(doc)
 
@@ -68,6 +73,7 @@ class Database:
         )
 
     async def add_join_req(self, user_id: int, channel_id: int):
+    # Add the channel ONLY if it's not already in the array
         result = await self.req.update_one(
             {"_id": user_id},
             {
@@ -93,6 +99,29 @@ class Database:
         result = await self.req.delete_many({"channel_id": channel_id})
         return result.deleted_count
         
+    async def del_all_join_req(self):
+        await self.req.drop()
+
+    async def get_fsub_list(self):
+        data = await self.fsub_col.find_one({"_id": "FSUB"})
+        return data["channels"] if data else []
+
+    async def add_fsub_channel(self, chat_id: int):
+        await self.fsub_col.update_one(
+            {"_id": "FSUB"},
+            {"$addToSet": {"channels": chat_id}},
+            upsert=True
+        )
+
+    async def remove_fsub_channel(self, chat_id: int):
+        await self.fsub_col.update_one(
+            {"_id": "FSUB"},
+            {"$pull": {"channels": chat_id}}
+        )
+
+    async def clear_fsub(self):
+        await self.fsub_col.delete_one({"_id": "FSUB"})
+          
     async def del_all_join_req(self):
         await self.req.drop()
 
