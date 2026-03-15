@@ -51,7 +51,8 @@ class Database:
     async def delete_channel_users(self, channel_id: int):
         result = await self.req.delete_many({"channel_id": channel_id})
         return result.deleted_count
-  async def find_join_req(self, user_id: int, channel_id: int):
+  
+    async def find_join_req(self, user_id: int, channel_id: int):
         doc = await self.req.find_one({'user_id': user_id, 'channel_id': channel_id})
         return bool(doc)
 
